@@ -17,7 +17,6 @@ Writeups/
 │ └── ...
 └── README.md
 
-
 ## 🧠 How I Use This Repository
 
 ### **TryHackMe (THM)**
@@ -33,6 +32,7 @@ Writeups/
 ---
 
 ## 🎯 Goals
+
 - Track and organize my practical cybersecurity progress  
 - Build a clear portfolio of hands‑on technical skills  
 - Reinforce concepts through documentation  
@@ -41,7 +41,17 @@ Writeups/
 ---
 
 ## 🔗 Useful Profiles
+
 - **TryHackMe:** https://tryhackme.com/p/CyberHamza101  
 - **HackTheBox:** https://app.hackthebox.com/profile/2893648  
+
+---
+
+## 💡 Tips for Future Updates
+
+- Create a new `.md` file for each module (THM) or machine (HTB)  
+- Include commands, outputs, and lessons learned  
+- Keep everything structured and consistent  
+- Update the repository as you progress to reflect real growth
 
 
